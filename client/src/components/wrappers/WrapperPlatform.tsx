@@ -21,7 +21,7 @@ const WrapperPlatform = ({ wrapperId }: WrapperPlatformProps) => {
 
   // Fetch wrapper data if wrapperId is provided
   const { data: wrapper, isLoading } = useQuery({
-    queryKey: wrapperId ? [`/api/wrappers/${wrapperId}`] : null,
+    queryKey: [`/api/wrappers/${wrapperId || ''}`],
     enabled: !!wrapperId
   });
 
@@ -77,15 +77,15 @@ const WrapperPlatform = ({ wrapperId }: WrapperPlatformProps) => {
   };
 
   return (
-    <div className="py-6">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-        <div className="bg-white shadow-md rounded-lg overflow-hidden">
+    <div className="py-4 md:py-6">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6">
+        <div className="bg-white shadow-lg rounded-xl overflow-hidden border border-gray-100">
           {/* Wrapper Configuration Tabs */}
           <div className="border-b border-gray-200">
-            <nav className="flex -mb-px">
+            <nav className="flex flex-wrap overflow-x-auto scrollbar-hide -mb-px">
               <button
                 onClick={() => setActiveTab('configuration')}
-                className={`px-6 py-4 border-b-2 font-medium text-sm ${
+                className={`px-4 md:px-6 py-3 md:py-4 border-b-2 font-medium text-xs md:text-sm whitespace-nowrap ${
                   activeTab === 'configuration'
                     ? 'border-primary text-primary'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
@@ -95,7 +95,7 @@ const WrapperPlatform = ({ wrapperId }: WrapperPlatformProps) => {
               </button>
               <button
                 onClick={() => setActiveTab('prompts')}
-                className={`px-6 py-4 border-b-2 font-medium text-sm ${
+                className={`px-4 md:px-6 py-3 md:py-4 border-b-2 font-medium text-xs md:text-sm whitespace-nowrap ${
                   activeTab === 'prompts'
                     ? 'border-primary text-primary'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
@@ -105,7 +105,7 @@ const WrapperPlatform = ({ wrapperId }: WrapperPlatformProps) => {
               </button>
               <button
                 onClick={() => setActiveTab('integrations')}
-                className={`px-6 py-4 border-b-2 font-medium text-sm ${
+                className={`px-4 md:px-6 py-3 md:py-4 border-b-2 font-medium text-xs md:text-sm whitespace-nowrap ${
                   activeTab === 'integrations'
                     ? 'border-primary text-primary'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
@@ -115,7 +115,7 @@ const WrapperPlatform = ({ wrapperId }: WrapperPlatformProps) => {
               </button>
               <button
                 onClick={() => setActiveTab('deployment')}
-                className={`px-6 py-4 border-b-2 font-medium text-sm ${
+                className={`px-4 md:px-6 py-3 md:py-4 border-b-2 font-medium text-xs md:text-sm whitespace-nowrap ${
                   activeTab === 'deployment'
                     ? 'border-primary text-primary'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
