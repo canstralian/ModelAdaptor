@@ -40,3 +40,32 @@ task = "packager.installForAll"
 task = "shell.exec"
 args = "npm run dev"
 waitForPort = 5000
+
+[[workflows.workflow]]
+name = "Linting and testing "
+mode = "sequential"
+author = 40089425
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pip install -r requirements.txt"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "black --check ."
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pylint src/"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pytest --maxfail=1 --disable-warnings -q"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python -m unittest discover -s tests/"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "coverage run -m pytest && coverage report -m"
